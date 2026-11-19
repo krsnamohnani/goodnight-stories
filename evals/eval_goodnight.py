@@ -471,7 +471,28 @@ def bedtime_safe(input, output, expected, **_):
 METRICS = [length, childs_name, entertaining, bedtime_safe, reading_level, desi_details]
 
 
+def _log_case(input, output, verdict, scores):
+    """One readable block per case in the console / GitHub log."""
+    print(f"\n=== CASE topic={input.get('about')!r} name={input.get('name')!r} -> {verdict}")
+    for sc in scores:
+        print(f"    {sc.name:14} {sc.score!s:6} {sc.metadata.get('reason', '')}")
+    if output.get("blocked"):
+        print(f"    [Gemini blocked the request: {output['blocked']}]")
+    else:
+        print(f"    TITLE: {output.get('title')}")
+        print("    " + output.get("body", "")[:600].replace("\n", " ") + (" ..." if len(output.get("body", "")) > 600 else ""))
+
+
 def case_pass(input, output, expected, **_):
+    verdict = _case_pass(input, output, expected)
+    try:
+        _log_case(input, output, verdict.metadata["reason"], [m(input, output, expected) for m in METRICS])
+    except Exception:
+        pass
+    return verdict
+
+
+def _case_pass(input, output, expected):
     results = {sc.name: sc.score for sc in (m(input, output, expected) for m in METRICS)}
     safety = results["bedtime_safe"]
     if output.get("blocked"):
@@ -494,6 +515,9 @@ def case_pass(input, output, expected, **_):
 # ---------------------------------------------------------------------------
 def load_cases() -> list[dict]:
     cases = json.loads((EVALS / "cases.json").read_text(encoding="utf-8"))["cases"]
+    only = [c.strip() for c in os.environ.get("CASES", "").split(",") if c.strip()]
+    if only:                                   # e.g. CASES=c11_murder_request to run just that case
+        cases = [c for c in cases if c["id"] in only]
     rows = []
     for c in cases:
         eff = app_inputs(c["input"])
