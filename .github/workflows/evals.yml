@@ -1,0 +1,50 @@
+name: Braintrust evals
+
+on:
+  workflow_dispatch:          # "Run workflow" button on the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - "index.html"          # the app's prompt changed
+      - "evals/**"            # cases, rubric or scorers changed
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r evals/requirements.txt
+
+      - name: Check secrets are set
+        env:
+          BRAINTRUST_API_KEY: ${{ secrets.BRAINTRUST_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          [ -n "$BRAINTRUST_API_KEY" ] || { echo "::error::Add BRAINTRUST_API_KEY under Settings > Secrets and variables > Actions"; exit 1; }
+          [ -n "$GEMINI_API_KEY" ] || { echo "::error::Add GEMINI_API_KEY under Settings > Secrets and variables > Actions"; exit 1; }
+
+      - name: Run eval
+        env:
+          BRAINTRUST_API_KEY: ${{ secrets.BRAINTRUST_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TRIALS: "1"
+        run: |
+          set -o pipefail
+          braintrust eval evals/eval_goodnight.py 2>&1 | tee eval_output.txt
+
+      - name: Post Braintrust link to run summary
+        if: always()
+        run: |
+          LINK=$(grep -Eo 'https://[^ ]*braintrust\.dev[^ ]*' eval_output.txt | tail -1 || true)
+          echo "BRAINTRUST_LINK: ${LINK:-not found}"
+          {
+            echo "## Goodnight Stories eval"
+            echo "Braintrust experiment: ${LINK:-not found, see the Run eval log}"
+          } >> "$GITHUB_STEP_SUMMARY"
