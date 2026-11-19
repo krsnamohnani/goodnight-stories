@@ -216,5 +216,5 @@ e.g. `"5 desi details: chai, marigold, sari, neem, chalo"`
 ## Notes on running
 
 - **Single source of truth:** the eval reads the story prompt, system instruction and model list **straight from `index.html`**. If you change the app's prompt, the eval tests the new prompt automatically.
-- **Same-family judge:** the LLM judges use Gemini too, because that's the key you have. A judge from a different model family would be less biased toward Gemini's own style.
+- **Same-family judge:** the LLM judges use Gemini too (Flash-Lite first, for speed and cost), because that's the key you have. A judge from a different model family would be less biased toward Gemini's own style.
 - **Randomness:** stories vary from run to run. Set `TRIALS=3` to run each case 3 times and get steadier averages.

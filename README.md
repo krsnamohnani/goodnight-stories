@@ -15,7 +15,7 @@ Enter the child's name, age, how many minutes the story should last, and what it
 
 ## How it works
 - A single static `index.html`: no build step and no server.
-- It calls the Gemini `streamGenerateContent` API straight from the browser. It tries `gemini-3.8-flash` first, then falls back to older models if that one isn't available.
+- It calls the Gemini `streamGenerateContent` API straight from the browser. It uses `gemini-3.5-flash-lite` (fast and cheap) first, and falls back to other Gemini models if that one is busy or unavailable.
 - Length is set at about 120 words per minute, a slow read-aloud pace.
 
 ## Evals (Braintrust)

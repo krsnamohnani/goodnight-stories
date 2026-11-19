@@ -111,7 +111,7 @@ def build_prompt(i: dict) -> str:
 MIN_GAP = float(os.environ.get("GEMINI_MIN_GAP", "6"))      # 6 s apart = max 10 requests/min
 REQUEST_TIMEOUT = 150
 # Judges use different models from the story writer, so they draw on separate quotas.
-JUDGE_MODELS = [m for m in ["gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-2.5-flash"]] + MODELS
+JUDGE_MODELS = ["gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-2.5-flash"] + MODELS
 _rate_lock = threading.Lock()
 _last_call = [0.0]
 
