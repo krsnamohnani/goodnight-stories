@@ -17,3 +17,14 @@ Enter the child's name, age, how many minutes the story should last, and what it
 - A single static `index.html`: no build step and no server.
 - It calls the Gemini `streamGenerateContent` API straight from the browser. It tries `gemini-3.8-flash` first, then falls back to older models if that one isn't available.
 - Length is set at about 120 words per minute, a slow read-aloud pace.
+
+## Evals (Braintrust)
+The eval sends 10 test cases (`evals/cases.json`) through the app's real prompt and scores each story on 7 metrics: length, child's name, desi names, entertaining, bedtime-safe, reading level and desi details. The rules are in `evals/rubric.md`.
+
+```bash
+cp .env.example .env              # then paste your BRAINTRUST_API_KEY and GEMINI_API_KEY into .env
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r evals/requirements.txt
+braintrust eval evals/eval_goodnight.py
+```
+To run each case 3 times for steadier averages, use `TRIALS=3 braintrust eval evals/eval_goodnight.py`.

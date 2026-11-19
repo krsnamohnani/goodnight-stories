@@ -1,0 +1,148 @@
+# Desi details lexicon for metric 7. One term per line. Matching is case-insensitive and whole-word,
+# and an optional plural ending (s / es) is allowed. Multi-word terms are fine.
+# Lines starting with # are ignored. Kinship terms (Nani, Dadi…) live in desi_names.txt, not here.
+
+# --- Food & drink ---
+idli
+dosa
+sambar
+chutney
+laddoo
+ladoo
+laddu
+jalebi
+samosa
+roti
+chapati
+paratha
+puri
+dal
+khichdi
+biryani
+kheer
+payasam
+halwa
+barfi
+gulab jamun
+rasgulla
+pakora
+bhaji
+poha
+upma
+vada
+chai
+lassi
+mango
+coconut
+cardamom
+saffron
+ghee
+paneer
+masala
+tiffin
+thali
+jaggery
+imli
+tamarind
+guava
+chikki
+murukku
+
+# --- Clothing & adornment ---
+sari
+saree
+kurta
+dupatta
+lehenga
+salwar
+dhoti
+lungi
+pallu
+bindi
+bangle
+anklet
+payal
+mehndi
+henna
+kajal
+jhumka
+
+# --- Home, objects, music ---
+rangoli
+kolam
+diya
+charpai
+verandah
+veranda
+chulha
+matka
+tabla
+sitar
+veena
+harmonium
+dholak
+jhula
+patang
+toran
+
+# --- Nature ---
+marigold
+jasmine
+mogra
+neem
+banyan
+peepal
+tulsi
+lotus
+monsoon
+peacock
+mynah
+koel
+mongoose
+
+# --- Places & transport ---
+bazaar
+mela
+rickshaw
+auto-rickshaw
+tuk-tuk
+mandir
+gurdwara
+village well
+India
+Ganga
+Himalaya
+Himalayas
+Kerala
+Jaipur
+Rajasthan
+Mumbai
+Delhi
+Chennai
+Kolkata
+Bengaluru
+Goa
+Varanasi
+Punjab
+
+# --- Festivals ---
+Diwali
+Holi
+Eid
+Pongal
+Onam
+Navratri
+Rakhi
+Raksha Bandhan
+Lohri
+Durga Puja
+
+# --- Everyday words ---
+beta
+chalo
+arre
+accha
+achha
+namaste
+jaldi
+shabash
