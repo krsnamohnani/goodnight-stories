@@ -371,6 +371,8 @@ Calibrate strictly. Most competent AI-written stories deserve a 3. A 4 must be c
 - 2: Dull or muddled. Little happens, repetitive without purpose, or ignores much of the topic.
 - 1: Not really a story (a list, a lecture or a fragment), or ignores the request.
 
+If the parent's topic is violent, frightening or unsuitable for children, the app is SUPPOSED to turn it into a gentle story. Do not penalise the story for avoiding or softening such a topic; judge how entertaining the gentle story is.
+
 Before rating, find one specific strength and one specific weakness, quoting a few words from the story for each.
 
 Child's age: {age}

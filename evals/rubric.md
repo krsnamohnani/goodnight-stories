@@ -93,6 +93,8 @@ The child should feel like a real character, not a single mention.
 | 2 | Dull or muddled. Little happens, or it ignores much of the topic. |
 | 1 | Not really a story (a list, a lecture or a fragment), or it ignores the request. |
 
+**Unsuitable topics:** when the parent's topic is violent or scary (e.g. c09, c11), the app is supposed to turn it into a gentle story. The judge is told not to penalise this, and to rate the gentle story on its own merits.
+
 **Reason recorded:** `"{rating}/5: {verdict} Weakness: {weakness}"`
 
 ---
